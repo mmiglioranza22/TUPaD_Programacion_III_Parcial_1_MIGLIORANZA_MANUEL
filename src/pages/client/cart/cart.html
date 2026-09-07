@@ -3,13 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Food Store - Carrito</title>
+    <link rel="stylesheet" href="../../../style.css" />
   </head>
 
   <body>
-    <h1>Carrito</h1>
-    <!-- <button id="logoutButton">Logout</button> -->
-    <script type="module" src="/src/main.ts"></script>
-    <script type="module" src="./cart.ts"></script>
+    <body>
+      <header>
+        <h1>🍕 Food Store</h1>
+        <nav>
+          <!-- <a href="#">Inicio</a> -->
+          <!-- <a href="#">Mis Pedidos</a> -->
+
+          <a href="/src/pages/client/home/home.html">Catálogo</a>
+          <a href="#">Carrito</a>
+          <button id="logoutButton">Logout</button>
+
+          <!-- <a href="admin.html">Panel Admin</a> -->
+        </nav>
+      </header>
+
+      <main class="container">
+        <h1 class>Mi carrito</h1>
+        <div id="cart-container"></div>
+      </main>
+
+      <footer>
+        <p>© 2024 Food Store. Todos los derechos reservados.</p>
+        <p>Contacto: info@foodstore.com</p>
+      </footer>
+
+      <script type="module" src="../../../main.ts"></script>
+      <script type="module" src="./cart.ts"></script>
+    </body>
   </body>
 </html>

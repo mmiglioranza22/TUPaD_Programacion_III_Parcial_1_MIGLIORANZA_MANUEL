@@ -13,4 +13,12 @@ export interface IProduct {
   categorias: ICategoria[];
 }
 
-export interface ICartItem {}
+export interface ICartItem {
+  product: Omit<IProduct, "descripcion">;
+  cantidad: number;
+}
+
+export interface Carrito {
+  items: ICartItem[];
+  total: number;
+}

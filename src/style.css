@@ -244,3 +244,160 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* carrito */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 30px;
+  align-items: start;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow: scroll;
+  height: 80%;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  gap: 20px;
+  align-items: center;
+
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.product-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-name {
+  margin: 0 0 8px;
+}
+
+.product-category {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.product-price {
+  font-weight: bold;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.quantity-controls button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.quantity {
+  min-width: 25px;
+  text-align: center;
+}
+
+.item-right {
+  text-align: right;
+  min-width: 150px;
+}
+
+.subtotal {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.remove-button,
+.clear-cart-button {
+  border: none;
+  background: #d32f2f;
+  color: white;
+  padding: 9px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.remove-button:hover,
+.clear-cart-button:hover {
+  background: #b71c1c;
+}
+
+.cart-summary {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  position: sticky;
+  top: 20px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.total {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.empty-cart {
+  background: white;
+  padding: 40px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+@media (max-width: 800px) {
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-item {
+    grid-template-columns: 80px 1fr;
+  }
+
+  .product-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .item-right {
+    grid-column: 1 / -1;
+    text-align: left;
+  }
+
+  .cart-summary {
+    position: static;
+  }
+}
