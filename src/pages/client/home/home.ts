@@ -1,59 +1,140 @@
-// carrito.setAttribute('href', navigate("/src/pages/client/home/home.html");)
+import { categorias, PRODUCTS } from "../../../data/data";
+import type { ICategoria } from "../../../types/categoria";
+import type { IProduct } from "../../../types/product";
 
-// const cargarCategorias = () => {
-//   const listaCategorias = document.querySelector("#lista-categorias");
+const cargarCategorias = (): void => {
+  const listaCategorias = document.querySelector(
+    "#lista-categorias",
+  ) as HTMLLIElement;
 
-//   categorias.forEach((categoria) => {
-//     const li = document.createElement("li");
+  // Crear "Todas las categorias"
 
-//     li.innerHTML = `
-//             <a href="#">
-//                 ${categoria}
-//             </a>
-//         `;
+  const li = document.createElement("li");
 
-//     listaCategorias.appendChild(li);
-//   });
-// };
+  li.innerHTML = `
+            <a href="">
+                Todas las categorías
+            </a>
+        `;
 
-// const cargarProductos = (productosAMostrar = productos) => {
-//   const contenedorProductos = document.querySelector("#contenedor-productos");
+  li.addEventListener("click", (e: MouseEvent) => {
+    e.preventDefault();
+    cargarProductos();
+  });
+  listaCategorias.appendChild(li);
 
-//   contenedorProductos.innerHTML = "";
+  categorias.forEach((categoria: ICategoria) => {
+    const li = document.createElement("li");
 
-//   productosAMostrar.forEach((producto) => {
-//     const article = document.createElement("article");
+    li.innerHTML = `
+            <a href="">
+                ${categoria.nombre}
+            </a>
+        `;
 
-//     article.classList.add("producto");
+    li.addEventListener("click", (e: MouseEvent) => {
+      // evitar refrescar la página
+      e.preventDefault();
+      // invocar función filtrar productos
+      filtrarProductos(categoria.id);
+    });
+    listaCategorias.appendChild(li);
+  });
+};
 
-//     article.innerHTML = `
-//             <img
-//                 src="${producto.imagen}"
-//                 alt="${producto.nombre}"
-//                 width="250"
-//                 height="250"
-//             >
+const cargarProductos = (productosAMostrar: IProduct[] = PRODUCTS): void => {
+  const contenedorProductos = document.querySelector(
+    "#contenedor-productos",
+  ) as HTMLElement;
 
-//             <h3>${producto.nombre}</h3>
+  contenedorProductos.innerHTML = "";
 
-//             <p>${producto.descripcion}</p>
+  productosAMostrar.forEach((producto) => {
+    const article = document.createElement("article");
 
-//             <p>$${producto.precio}</p>
+    article.classList.add("producto");
 
-//             <button type="button" class="btn-agregar">
-//                 Agregar
-//             </button>
-//         `;
+    article.innerHTML = `
+						<div id="${producto.id}" class="producto_${producto.disponible ? "disponible" : "no_disponible"}">		
+							<img
+									src="${producto.imagen}"
+									alt="${producto.nombre}"
+									width="250"
+									height="250"
+							>
 
-//     const botonAgregar = article.querySelector(".btn-agregar");
+							<h3>${producto.nombre}</h3>
 
-//     botonAgregar.addEventListener("click", () => {
-//       alert(`Agregaste: ${producto.nombre}`);
-//     });
+							<p>${producto.descripcion}</p>
 
-//     contenedorProductos.appendChild(article);
-//   });
-// };
+							<p>$${producto.precio}</p>
 
-// cargarCategorias();
-// cargarProductos();
+							<button type="button" class="btn-agregar">
+									Agregar
+							</button>
+						</div>
+        `;
+
+    const botonAgregar = article.querySelector(
+      ".btn-agregar",
+    ) as HTMLButtonElement;
+
+    botonAgregar.addEventListener("click", () => {
+      alert(`Agregaste: ${producto.nombre}`);
+    });
+
+    contenedorProductos.appendChild(article);
+  });
+};
+
+const filtrarProductos = (idCategoria: number): void => {
+  const contenedorProductos = document.querySelector(
+    "#contenedor-productos",
+  ) as HTMLElement;
+
+  // se computa cada vez que listado de productos filtrados es seleccionado
+  const productosFiltrados = PRODUCTS.filter((producto) =>
+    producto.categorias.some((categoria) => categoria.id === idCategoria),
+  );
+
+  // limpiar los productos previos
+  contenedorProductos.innerHTML = "";
+
+  productosFiltrados.forEach((producto) => {
+    const article = document.createElement("article");
+
+    article.classList.add("producto");
+
+    article.innerHTML = `
+  					<div id="${producto.id}" class="producto_${producto.disponible ? "disponible" : "no_disponible"}">
+  						<img
+  								src="${producto.imagen}"
+  								alt="${producto.nombre}"
+  								width="250"
+  								height="250"
+  						>
+
+  						<h3>${producto.nombre}</h3>
+
+  						<p>${producto.descripcion}</p>
+
+  						<p>$${producto.precio}</p>
+
+  						<button type="button" class="btn-agregar">
+  								Agregar
+  						</button>
+  					</div>
+        `;
+
+    const botonAgregar = article.querySelector(
+      ".btn-agregar",
+    ) as HTMLButtonElement;
+
+    botonAgregar.addEventListener("click", () => {
+      alert(`Agregaste: ${producto.nombre}`);
+    });
+    contenedorProductos.appendChild(article);
+  });
+};
+cargarCategorias();
+cargarProductos();
