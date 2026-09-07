@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + TS</title>
+  </head>
+
+  <body>
+    <script type="module" src="/src/main.ts"></script>
+
+    <script>
+      // recrea navigate
+      // esto evita que, si se escribe una ruta a mano en la URL, no se concatene y se limpie reemplazando siempre por /login
+      const url = new URL(
+        "src/pages/auth/login/login.html",
+        window.location.origin,
+      );
+      window.location.replace(url.toString());
+    </script>
+  </body>
+</html>
