@@ -3,6 +3,8 @@ import type { ICategoria } from "../../../types/categoria";
 import type { IProduct } from "../../../types/product";
 import { addToCart, updateCartIndicator } from "../../../utils/cart";
 
+let productoBuscado = "";
+
 const cargarCategorias = (): void => {
   const listaCategorias = document.querySelector(
     "#lista-categorias",
@@ -140,7 +142,27 @@ const filtrarProductos = (idCategoria: number): void => {
   });
 };
 
+const buscarProductos = (): void => {
+  const form = document.querySelector<HTMLFormElement>("#busqueda-productos");
+
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+
+    const productoBuscado = formData.get("busqueda") as string;
+
+    const productos = PRODUCTS.filter((producto) =>
+      producto.nombre
+        .toLocaleLowerCase()
+        .includes(productoBuscado.toLocaleLowerCase()),
+    );
+    cargarProductos(productos);
+  });
+};
+
 cargarCategorias();
 cargarProductos();
 // Invocado por si se hizo logout y hay items en el carrito desde localStorage
 updateCartIndicator();
+buscarProductos();
