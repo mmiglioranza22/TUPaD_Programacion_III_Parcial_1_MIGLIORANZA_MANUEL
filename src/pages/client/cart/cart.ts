@@ -4,6 +4,7 @@ import {
   decreaseQuantity,
   removeFromCart,
   clearCart,
+  updateCartIndicator,
 } from "../../../utils/cart";
 
 // El carrito y todo lo que contiene (productos, cantidades, subtotales) se calcula de forma dinámica desde localStorage
@@ -66,6 +67,9 @@ function renderCart(): void {
 
   // cada vez que se actualiza o modifica la lista del carrito, deben registrarse todos los listeners de los botones
   registerEvents();
+
+  // Actualizar visualizador del carrito
+  updateCartIndicator();
 }
 
 function renderCartItem(item: any): string {
@@ -206,6 +210,7 @@ function registerEvents(): void {
       increaseQuantity(productId);
 
       renderCart();
+      updateCartIndicator();
     });
   });
 
@@ -216,6 +221,7 @@ function registerEvents(): void {
       decreaseQuantity(productId);
 
       renderCart();
+      updateCartIndicator();
     });
   });
 
@@ -226,6 +232,7 @@ function registerEvents(): void {
       removeFromCart(productId);
 
       renderCart();
+      updateCartIndicator();
     });
   });
 
@@ -233,7 +240,10 @@ function registerEvents(): void {
     clearCart();
 
     renderCart();
+    updateCartIndicator();
   });
 }
 
 renderCart();
+// Invocado por si se hizo logout y hay items en el carrito desde localStorage
+updateCartIndicator();

@@ -153,3 +153,22 @@ export function decreaseQuantity(productId: number): Carrito {
 
   return saveCart(carrito.items);
 }
+
+// Indicador visual carrito
+export function updateCartIndicator(): void {
+  const cartLink = document.querySelector<HTMLElement>("#cart-link");
+
+  const cartCount = document.querySelector<HTMLElement>("#cart-count");
+
+  if (!cartLink || !cartCount) {
+    return;
+  }
+
+  const cart = getCart();
+
+  const quantity = cart.items.reduce((total, item) => total + item.cantidad, 0);
+
+  cartCount.textContent = quantity.toString();
+
+  cartLink.classList.toggle("has-items", quantity > 0);
+}

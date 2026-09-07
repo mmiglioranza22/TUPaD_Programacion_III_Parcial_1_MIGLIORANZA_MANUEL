@@ -1,6 +1,7 @@
 import { categorias, PRODUCTS } from "../../../data/data";
 import type { ICategoria } from "../../../types/categoria";
 import type { IProduct } from "../../../types/product";
+import { addToCart, updateCartIndicator } from "../../../utils/cart";
 
 const cargarCategorias = (): void => {
   const listaCategorias = document.querySelector(
@@ -80,7 +81,9 @@ const cargarProductos = (productosAMostrar: IProduct[] = PRODUCTS): void => {
     ) as HTMLButtonElement;
 
     botonAgregar.addEventListener("click", () => {
-      alert(`Agregaste: ${producto.nombre}`);
+      addToCart(producto);
+      // Actualizar indicador visual
+      updateCartIndicator();
     });
 
     contenedorProductos.appendChild(article);
@@ -136,5 +139,8 @@ const filtrarProductos = (idCategoria: number): void => {
     contenedorProductos.appendChild(article);
   });
 };
+
 cargarCategorias();
 cargarProductos();
+// Invocado por si se hizo logout y hay items en el carrito desde localStorage
+updateCartIndicator();

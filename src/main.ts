@@ -1,4 +1,5 @@
 import type { IUser } from "./types/IUser";
+import { logout } from "./utils/auth";
 import { addUser, getUSer, getUsers } from "./utils/localStorage";
 import { navigate } from "./utils/navigate";
 
@@ -54,6 +55,15 @@ const protegerRuta = (): void => {
     return;
   }
 };
+
+const buttonLogout = document.getElementById(
+  "logoutButton",
+) as HTMLButtonElement;
+console.log({ buttonLogout });
+buttonLogout?.addEventListener("click", (e: MouseEvent) => {
+  e.preventDefault();
+  logout();
+});
 
 seedAdmin();
 protegerRuta();
