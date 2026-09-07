@@ -48,7 +48,7 @@ nav a {
 .home-layout {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 250px auto;
   grid-template-rows: auto;
   overflow: hidden;
 }
