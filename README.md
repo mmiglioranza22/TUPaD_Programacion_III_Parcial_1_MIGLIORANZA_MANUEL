@@ -1,19 +1,21 @@
-# Proyecto: Protección de Rutas (Educativo)
+# Proyecto: Foodstore
 
 ## ✍️ Descripción
 
----
+Proyecto para el primer parcial de Programación III: Foodstore
 
-## ⚠️ ¡Importante! Nivel de Seguridad
-
-La protección de rutas implementada en este proyecto **NO ES SEGURA** y no debe utilizarse en un entorno de producción.
-
-- **Razón**: La lógica de autenticación se basa en datos guardados en `localStorage` en el navegador del usuario.
-- **Riesgo**: Cualquier usuario con conocimientos técnicos básicos puede abrir las herramientas de desarrollador del navegador para inspeccionar, modificar o eliminar los datos de `localStorage`, obteniendo así acceso no autorizado a rutas protegidas.
-
-Este enfoque es útil únicamente para fines de aprendizaje y para prototipos de bajo riesgo. La seguridad real debe implementarse en el **backend**.
+## [Video explicativo]()
 
 ---
+
+## Funcionalidades
+
+- Visualización de productos
+- Búsqueda de productos por nombre (coincidencia parcial)
+- Filtro de productos por categoría
+- Carrito de compras persistido en `localStorage`
+- Modificación lógica de carrito de compras (indicador de carrito, cantidad, subtotal, productos)
+- ***
 
 ## 🚀 Instalación y Uso
 
@@ -40,10 +42,12 @@ pnpm install
 Para iniciar el servidor de desarrollo de Vite, ejecuta:
 
 ```bash
-pnpm dev
+pnpm run dev
 ```
 
 La aplicación estará disponible en la URL que aparezca en la terminal (generalmente `http://localhost:5173`).
+
+Para interactuar el proyecto debe registrarse un nuevo usuario y logearse con el mismo.
 
 ---
 
@@ -52,15 +56,18 @@ La aplicación estará disponible en la URL que aparezca en la terminal (general
 ```
 /
 ├── src/
+│   ├── assets/               # Contiene los assets (imagenes)
 │   ├── pages/                # Contiene las páginas de la aplicación
 │   │   ├── admin/            # Páginas solo para administradores
-│   │   ├── auth/             # Páginas de autenticación (login, registro)
-│   │   └── client/           # Páginas solo para clientes
-│   ├── types/                # Define las interfaces y tipos (IUser, Rol)
+│   │   ├── auth/             # Páginas de autenticación (login, registro) y lógica respectiva de cada una
+│   │   └── client/           # Páginas solo para clientes (home, cart) y lógica respectiva de cada una
+│   ├── types/                # Define las interfaces y tipos (IUser, Rol, categoria, product)
 │   └── utils/                # Lógica reutilizable
 │       ├── auth.ts           # Función principal de verificación de rol y sesión
+│       ├── cart.ts   				# Funciones para leer/escribir en localStorage para el carrito
 │       ├── localStorage.ts   # Funciones para leer/escribir en localStorage
 │       └── navigate.ts       # Función para redirigir al usuario
 ├── package.json              # Dependencias y scripts
+├── index.html              	# Punto de entrada de la SPA
 └── README.md                 # Este archivo
 ```
