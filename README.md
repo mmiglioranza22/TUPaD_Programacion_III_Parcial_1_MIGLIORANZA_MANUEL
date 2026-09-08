@@ -4,7 +4,7 @@
 
 Proyecto para el primer parcial de Programación III: Foodstore
 
-## [Video explicativo]()
+## [Video explicativo](https://youtu.be/9Dvov2JlxzM)
 
 ---
 
@@ -15,7 +15,11 @@ Proyecto para el primer parcial de Programación III: Foodstore
 - Filtro de productos por categoría
 - Carrito de compras persistido en `localStorage`
 - Modificación lógica de carrito de compras (indicador de carrito, cantidad, subtotal, productos)
-- ***
+
+## Tecnologías
+
+- HTML5 / CSS3 / Typescript
+- Vite
 
 ## 🚀 Instalación y Uso
 

@@ -3,8 +3,6 @@ import type { ICategoria } from "../../../types/categoria";
 import type { IProduct } from "../../../types/product";
 import { addToCart, updateCartIndicator } from "../../../utils/cart";
 
-let productoBuscado = "";
-
 const cargarCategorias = (): void => {
   const listaCategorias = document.querySelector(
     "#lista-categorias",
@@ -157,7 +155,18 @@ const buscarProductos = (): void => {
         .toLocaleLowerCase()
         .includes(productoBuscado.toLocaleLowerCase()),
     );
-    cargarProductos(productos);
+
+    // si no se encuentran productos, indicarlo al usuario
+    if (productos.length === 0) {
+      const contenedorProductos = document.querySelector(
+        "#contenedor-productos",
+      ) as HTMLElement;
+
+      contenedorProductos.innerHTML =
+        "No se encontraron productos con ese nombre";
+    } else {
+      cargarProductos(productos);
+    }
   });
 };
 
